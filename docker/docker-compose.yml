@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+      - ./configurations/influxdb/init-influxdb.sh:/init-influxdb.sh:ro
+    command: /bin/bash /init-influxdb.sh
+
+  telegraf:
+    image: telegraf:latest
+    depends_on:
+      - influxdb
+    volumes:
+      - ./configurations/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    environment:
+      - HOST_PROC=/host/proc
+      - HOST_SYS=/host/sys
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influxdb
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+
+volumes:
+  influxdb-data:
+  grafana-storage:
