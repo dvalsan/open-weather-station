@@ -1,6 +1,20 @@
 # 🌤️ Open Weather Station
 
-[TOC]
+## Table of contents
+- [🌤️ Open Weather Station](#️-open-weather-station)
+  - [Table of contents](#table-of-contents)
+  - [⚡ Components](#-components)
+  - [📂 Folders](#-folders)
+  - [🚀 Steps to execute and configure everything](#-steps-to-execute-and-configure-everything)
+    - [1. Clone the repository](#1-clone-the-repository)
+    - [2. Configure the board](#2-configure-the-board)
+    - [3. Configure the sensors](#3-configure-the-sensors)
+    - [4. Configure The Things Network (TTN)](#4-configure-the-things-network-ttn)
+    - [5. Configure the backend with Docker](#5-configure-the-backend-with-docker)
+    - [6. Configure the frontend with Grafana](#6-configure-the-frontend-with-grafana)
+    - [7. Connect the power to the board](#7-connect-the-power-to-the-board)
+    - [Debugging the process](#debugging-the-process)
+  - [License](#license)
 
 This program has been developed on OpenMV IDE using micropython because of the Lora Shield by OpenMV having a camera (and using it for machine learning and detect the climatology).
 
